@@ -1,7 +1,7 @@
 package guru.sfg.beer.order.service.web.mappers;
 
-import guru.sfg.beer.order.service.NotFoundException;
 import guru.sfg.beer.order.service.domain.BeerOrderLine;
+import guru.sfg.beer.order.service.exceptions.NotFoundException;
 import guru.sfg.beer.order.service.services.beer.BeerService;
 import guru.sfg.beer.order.service.services.beer.model.BeerDto;
 import guru.sfg.beer.order.service.web.model.BeerOrderLineDto;
