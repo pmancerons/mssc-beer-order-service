@@ -11,6 +11,7 @@ public class JmsConfig {
 
     public static final String ORDER_VALIDATION_QUEUE = "validate-order";
     public static final String ORDER_VALIDATION_RESULT_QUEUE = "validate-order-result";
+    public static final String ORDER_ALLOCATION_QUEUE = "allocate-order";
 
     @Bean
     public MessageConverter messageConverter(){
