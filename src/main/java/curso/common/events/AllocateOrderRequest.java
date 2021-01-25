@@ -1,4 +1,4 @@
-package curso.common.model.events;
+package curso.common.events;
 
 import curso.common.model.BeerOrderDto;
 import lombok.Builder;

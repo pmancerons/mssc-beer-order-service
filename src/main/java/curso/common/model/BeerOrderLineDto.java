@@ -24,6 +24,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -51,4 +52,6 @@ public class BeerOrderLineDto {
     private String beerName;
     private UUID beerId;
     private Integer orderQuantity = 0;
+    private Integer quantityAllocated;
+    private BigDecimal price;
 }

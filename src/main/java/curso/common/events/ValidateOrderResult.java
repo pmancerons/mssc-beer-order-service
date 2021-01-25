@@ -1,4 +1,4 @@
-package curso.common.model.events;
+package curso.common.events;
 
 import lombok.Builder;
 import lombok.Data;

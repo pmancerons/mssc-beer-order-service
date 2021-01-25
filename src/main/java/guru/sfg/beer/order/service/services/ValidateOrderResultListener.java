@@ -1,6 +1,6 @@
 package guru.sfg.beer.order.service.services;
 
-import curso.common.model.events.ValidateOrderResult;
+import curso.common.events.ValidateOrderResult;
 import guru.sfg.beer.order.service.config.JmsConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;

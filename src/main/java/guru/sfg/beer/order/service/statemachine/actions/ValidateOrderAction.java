@@ -1,6 +1,6 @@
 package guru.sfg.beer.order.service.statemachine.actions;
 
-import curso.common.model.events.ValidateOrderRequest;
+import curso.common.events.ValidateOrderRequest;
 import guru.sfg.beer.order.service.config.JmsConfig;
 import guru.sfg.beer.order.service.domain.BeerOrder;
 import guru.sfg.beer.order.service.domain.BeerOrderEventEnum;
