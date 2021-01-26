@@ -16,6 +16,7 @@ import org.springframework.statemachine.support.DefaultStateMachineContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -97,6 +98,15 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
         sendBeerOrderEvent(beerOrder, BeerOrderEventEnum.ALLOCATION_FAILED);
     }
 
+    @Transactional
+    @Override
+    public void beerOrderPickedUp(UUID id) {
+        Optional<BeerOrder> beerOrderOptional = beerOrderRepository.findById(id);
+
+        beerOrderOptional.ifPresentOrElse(beerOrder -> {
+            sendBeerOrderEvent(beerOrder,BeerOrderEventEnum.BEER_ORDER_PICKED_UP);
+        },() -> log.error("order not found, id: " + id));
+    }
 
     private void sendBeerOrderEvent(BeerOrder beerOrder, BeerOrderEventEnum event){
         log.info("*sending event: " + event + ", beer order status : " + beerOrder.getOrderStatus());
