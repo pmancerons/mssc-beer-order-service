@@ -40,6 +40,24 @@
             <version>${jaxb.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>artemis-jms-server</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- test dependencies-->
+        <dependency>
+            <groupId>de.mkammerer.wiremock-junit5</groupId>
+            <artifactId>wiremock-junit5</artifactId>
+            <version>1.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>

@@ -28,7 +28,10 @@ public class AllocateOrderAction implements Action<BeerOrderStatusEnum, BeerOrde
 
     @Override
     public void execute(StateContext<BeerOrderStatusEnum, BeerOrderEventEnum> stateContext) {
+
         String beerOrderId = stateContext.getMessageHeaders().get(BeerOrderManagerImpl.ORDER_ID_HEADER,String.class);
+
+        log.info("Sending message to allocate order on beerOrderId : " + beerOrderId);
 
         BeerOrder beerOrder = beerOrderRepository.getOne(UUID.fromString(beerOrderId));
 
@@ -37,6 +40,5 @@ public class AllocateOrderAction implements Action<BeerOrderStatusEnum, BeerOrde
                         .beerOrderDto(beerOrderMapper.beerOrderToDto(beerOrder)).
                         build());
 
-        log.info("Sending message to allocate order on beerOrderId : " + beerOrderId);
     }
 }
