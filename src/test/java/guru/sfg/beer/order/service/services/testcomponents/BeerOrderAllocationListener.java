@@ -34,12 +34,14 @@ public class BeerOrderAllocationListener {
                 }
         );
 
-        jmsTemplate.convertAndSend(JmsConfig.ORDER_ALLOCATION_RESULT_QUEUE,
-                AllocationOrderResult.builder()
-                        .allocationError(allocationError)
-                        .pendingInventory(partialAllocation)
-                        .beerOrderDto(request.getBeerOrderDto())
-                        .build()
-        );
+        if(!"dont-allocate".equals(request.getBeerOrderDto().getCustomerRef())) {
+            jmsTemplate.convertAndSend(JmsConfig.ORDER_ALLOCATION_RESULT_QUEUE,
+                    AllocationOrderResult.builder()
+                            .allocationError(allocationError)
+                            .pendingInventory(partialAllocation)
+                            .beerOrderDto(request.getBeerOrderDto())
+                            .build()
+            );
+        }
     }
 }

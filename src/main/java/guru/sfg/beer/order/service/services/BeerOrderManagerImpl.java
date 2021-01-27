@@ -4,6 +4,7 @@ import curso.common.model.BeerOrderDto;
 import guru.sfg.beer.order.service.domain.BeerOrder;
 import guru.sfg.beer.order.service.domain.BeerOrderEventEnum;
 import guru.sfg.beer.order.service.domain.BeerOrderStatusEnum;
+import guru.sfg.beer.order.service.exceptions.NotFoundException;
 import guru.sfg.beer.order.service.repositories.BeerOrderRepository;
 import guru.sfg.beer.order.service.statemachine.OrderStateChangeInterceptor;
 import lombok.RequiredArgsConstructor;
@@ -76,6 +77,15 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
         sendBeerOrderEvent(beerOrder, BeerOrderEventEnum.ALLOCATION_NO_INVENTORY);
 
         updateAllocatedQty(beerOrderDto);
+    }
+
+    @Transactional
+    @Override
+    public void cancelOrder(UUID beerOrderId) {
+        BeerOrder beerOrder = beerOrderRepository.findById(beerOrderId)
+                .orElseThrow(() -> new NotFoundException("beer not found!"));
+
+        sendBeerOrderEvent(beerOrder, BeerOrderEventEnum.CANCEL_ORDER);
     }
 
     void updateAllocatedQty(BeerOrderDto beerOrderDto) {

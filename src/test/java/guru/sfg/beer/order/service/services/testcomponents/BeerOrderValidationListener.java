@@ -28,11 +28,13 @@ public class BeerOrderValidationListener {
 
         isValid = !"validation-failed".equals(request.getBeerOrderDto().getCustomerRef());
 
-        jmsTemplate.convertAndSend(JmsConfig.ORDER_VALIDATION_RESULT_QUEUE,
-                ValidateOrderResult.builder()
-                    .isValid(isValid)
-                    .orderId(request.getBeerOrderDto().getId())
-                    .build()
-        );
+        if(!"dont-validate".equals(request.getBeerOrderDto().getCustomerRef())) {
+            jmsTemplate.convertAndSend(JmsConfig.ORDER_VALIDATION_RESULT_QUEUE,
+                    ValidateOrderResult.builder()
+                            .isValid(isValid)
+                            .orderId(request.getBeerOrderDto().getId())
+                            .build()
+            );
+        }
     }
 }
