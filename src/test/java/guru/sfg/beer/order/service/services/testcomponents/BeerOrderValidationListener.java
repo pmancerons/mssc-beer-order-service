@@ -20,14 +20,17 @@ public class BeerOrderValidationListener {
 
     @JmsListener(destination = JmsConfig.ORDER_VALIDATION_QUEUE)
     public void listen(Message msg){
-
         log.info("validating order in embedded server ");
+
+        boolean isValid = true;
 
         ValidateOrderRequest request = (ValidateOrderRequest) msg.getPayload();
 
+        isValid = !"validation-failed".equals(request.getBeerOrderDto().getCustomerRef());
+
         jmsTemplate.convertAndSend(JmsConfig.ORDER_VALIDATION_RESULT_QUEUE,
                 ValidateOrderResult.builder()
-                    .isValid(true)
+                    .isValid(isValid)
                     .orderId(request.getBeerOrderDto().getId())
                     .build()
         );

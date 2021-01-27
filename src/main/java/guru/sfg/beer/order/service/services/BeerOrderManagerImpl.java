@@ -92,6 +92,7 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
         beerOrderRepository.saveAndFlush(allocatedOrder);
     }
 
+    @Transactional
     @Override
     public void beerOrderAllocationFailed(BeerOrderDto beerOrderDto) {
         BeerOrder beerOrder = beerOrderRepository.getOne(beerOrderDto.getId());
