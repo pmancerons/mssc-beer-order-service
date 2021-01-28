@@ -1,5 +1,6 @@
 package guru.sfg.beer.order.service.web.controllers;
 
+import curso.common.model.CustomerDto;
 import guru.sfg.beer.order.service.domain.Customer;
 import guru.sfg.beer.order.service.services.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getAllCustomers(){
+    public List<CustomerDto> getAllCustomers(){
         return customerService.getAllCustomers();
     }
 }
