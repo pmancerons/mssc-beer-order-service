@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: brewery-config
