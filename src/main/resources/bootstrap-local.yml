@@ -2,6 +2,9 @@ spring:
   cloud:
     config:
       enabled: true
+      username: username
+      password: password
+      fail-fast: true
       discovery:
         enabled: true
         service-id: brewery-config
